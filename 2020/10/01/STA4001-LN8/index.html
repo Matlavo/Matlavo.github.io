@@ -1,269 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-  <title>STA4001 LN8 | Paul&#39;s Little Cabin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="STA4001 LN8: Stationary Distribution, Recurrence PropertyWe have reached the core of MC theory: stationary distribution and recurrence property. Gambler’s Ruin ProblemConsider a DTMC with state space">
-<meta property="og:type" content="article">
-<meta property="og:title" content="STA4001 LN8">
-<meta property="og:url" content="http://example.com/2020/10/01/STA4001-LN8/index.html">
-<meta property="og:site_name" content="Paul&#39;s Little Cabin">
-<meta property="og:description" content="STA4001 LN8: Stationary Distribution, Recurrence PropertyWe have reached the core of MC theory: stationary distribution and recurrence property. Gambler’s Ruin ProblemConsider a DTMC with state space">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-01T07:43:37.000Z">
-<meta property="article:modified_time" content="2020-10-01T07:49:01.940Z">
-<meta property="article:author" content="Paul Huang">
-<meta property="article:tag" content="Stochastic Process">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Paul&#39;s Little Cabin" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Paul&#39;s Little Cabin</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-STA4001-LN8" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/01/STA4001-LN8/" class="article-date">
-  <time datetime="2020-10-01T07:43:37.000Z" itemprop="datePublished">2020-10-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      STA4001 LN8
-    </h1>
-  
+{% block page_class %}page-post-detail{% endblock %}
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="STA4001-LN8-Stationary-Distribution-Recurrence-Property"><a href="#STA4001-LN8-Stationary-Distribution-Recurrence-Property" class="headerlink" title="STA4001 LN8: Stationary Distribution, Recurrence Property"></a>STA4001 LN8: Stationary Distribution, Recurrence Property</h1><p>We have reached the core of MC theory: stationary distribution and recurrence property.</p>
-<h3 id="Gambler’s-Ruin-Problem"><a href="#Gambler’s-Ruin-Problem" class="headerlink" title="Gambler’s Ruin Problem"></a>Gambler’s Ruin Problem</h3><p>Consider a DTMC with state space $S={0,1,2,3,4}$ and transition probabilities $P_{00}=P_{44}=1$, $P_{i,i+1}=0.2$, and $P_{i,i-1}=0.8$ for $i\in{1,2,3}$. We call states $0$ and $4$ <em>absorbing states</em>.</p>
-<p><strong>Interpretation</strong>: A gambler enters a casino with $1$ dollars. He wins $1$ dollar with probability $0.2$, and loses $1$ dollar with probability $0.8$. He plays repeatedly and stops playing when his balance reaches either $0$ or $4$ dollars.</p>
-<h3 id="First-Step-Method"><a href="#First-Step-Method" class="headerlink" title="First-Step Method"></a>First-Step Method</h3><h4 id="Probability-of-Ruin"><a href="#Probability-of-Ruin" class="headerlink" title="Probability of Ruin"></a>Probability of Ruin</h4><p>Let $P_i$ be the probability that the DTMC is absorbed into state $0$ when starting from state $i$. </p>
-<p>Take $P_3$ as an example. We go to state $4$ with probability $0.2$ and state $2$ with probability $0.8$. Then<br>$$<br>P_3=0.2P_4+0.8P_2<br>$$<br>Now $P_4=0$. Hence<br>$$<br>P_3=0.8P_2<br>$$<br>We calculate $P_2$:<br>$$<br>P_2=0.2P_3+0.8P_1<br>$$<br>Finally,<br>$$<br>P_1=0.2P_2+0.8P_0=0.2P_2+0.8<br>$$<br>This gives us a linear system<br>$$<br>\begin{pmatrix}<br>1&amp;-0.2&amp; 0 \ -0.8 &amp; 1 &amp; -0.2 \ 0 &amp; -0.8 &amp; 1<br>\end{pmatrix}<br>\begin{pmatrix}<br>P_1\P_2\P_3<br>\end{pmatrix}<br>=<br>\begin{pmatrix}<br>0.8\0\0<br>\end{pmatrix},.<br>$$<br> Note that $P_3\approx0.75$ is very high, since the winning probability is only $0.2$.</p>
-<p>Suppose now the gambler plays a fair game and stops when his balance reaches $N$. Then $P_1=\frac{N-1}{N}$. To derive this probability, we use our old theorem<br>$$<br>\mathbb{E}X_T=X_0=1=0\cdot P_1+N\cdot(1-P_1)<br>$$<br>which gives us the desired result. </p>
-<h4 id="Expected-Ending-Time"><a href="#Expected-Ending-Time" class="headerlink" title="Expected Ending Time"></a>Expected Ending Time</h4><p>Let $N_i$ be the expected number of steps to end the game starting from state $i$.</p>
-<p>Then<br>$$<br>N_3=1+0.2N_4+0.8N_2=1+0.8N_2<br>$$</p>
-<p>$$<br>N_2=1+0.2N_3+0.8N_1<br>$$</p>
-<p>$$<br>N_1=1+0.2N_2+0.8N_0=1+0.2N_2<br>$$</p>
-<p>This gives us a linear system that solves $N_1,N_2,N_3$.</p>
-<p><strong>Remark</strong>. With reasonable assumptions, the matrix is always full-rank.</p>
-<h3 id="Stationary-Distribution"><a href="#Stationary-Distribution" class="headerlink" title="Stationary Distribution"></a>Stationary Distribution</h3><p>Previously we talked about transient behaviors; we studied finite-time behavior. Now we study what happens when $t\to\infty$. </p>
-<p><strong>Definition.</strong> $\pi={\pi_i:i\in S}$ is called a <em>stationary distribution</em> with state space $S$ ($S$ may be infinite) and transition matrix $P$ if</p>
-<ul>
-<li>$\sum_{i\in S}\pi_i=1$</li>
-<li>$\pi=\pi P$ (<em>balance equation</em>, $\pi$ viewed as a probability row vector)</li>
-<li>$\pi\ge 0$</li>
-</ul>
-<p><strong>Example.</strong> For $P=\begin{pmatrix}0.2&amp;0.8\0.5&amp;0.5\end{pmatrix}$, we have $\pi=(5/13,8/13)$. </p>
-<p><strong>Interpretation of balance equation.</strong> Suppose the initial state follows a distribution, say, $X_0\sim\pi$ with $P(X_0=i)=\pi_i$. Then<br>$$<br>P(X_1=j)=\sum_{i}P(X_0=i)P(X_1=j\mid X_0=i)=\sum_{i}P_{i,j}\pi_i=(\pi P)_j,.<br>$$<br>Hence $X_1\sim\pi P$. More generally, $X_n\sim\pi P^n$. </p>
-<p>Therefore if $X_0\sim \pi$ with $\pi$ being stationary, then $X_n\sim \pi$ for all $n$. This is why $\pi$ is call <em>stationary</em>. </p>
-<p><strong>Examples.</strong> </p>
-<ul>
-<li><p>Simple symmetric random walk on a circle with $4$ nodes.<br>$$<br>P=<br>\begin{pmatrix}<br>0&amp;1/2&amp;0&amp;1/2 \<br>1/2&amp;0&amp;1/2&amp;0 \<br>0&amp;1/2&amp;0&amp;1/2 \<br>1/2&amp;0&amp;1/2&amp;0<br>\end{pmatrix},.<br>$$<br>By symmetry, $\pi=\frac{1}{4}(1,1,1,1)$. </p>
-</li>
-<li><p>Simple symmetric random walk on a circle with $4$ nodes.<br>$$<br>P=\begin{pmatrix}<br>0&amp;1/3&amp;1/3 \<br>1/3&amp;0&amp;1/3 \<br>1/3&amp;1/3&amp;0<br>\end{pmatrix},.<br>$$</p>
-</li>
-</ul>
-<p>  By symmetry, $\pi=\frac{1}{3}(1,1,1)$.</p>
-<h4 id="Connection-to-Long-term-average-profit"><a href="#Connection-to-Long-term-average-profit" class="headerlink" title="Connection to Long-term average profit"></a>Connection to Long-term average profit</h4><p>It seems that $\frac{1}{n}\sum_ig(X_i)$ converges to $\sum_i\pi_ig(i)$ as $n\to\infty$. Note that $X_i$ and $X_{i+1}$ are dependent on each other!</p>
-<h4 id="Irreducible-DTMC"><a href="#Irreducible-DTMC" class="headerlink" title="Irreducible DTMC"></a>Irreducible DTMC</h4><p><strong>Definitions.</strong></p>
-<ul>
-<li>State $i$ <em>reaches</em> state $j$ if there exists a path $i=i_0,i_1,…,i_{n-1},i_n=j$ such that $P_{i_k,i_{k+1}}&gt;0$ for all $k$. </li>
-<li>A DTMC is called <em>irreducible</em> if every pair of states reach each other.</li>
-<li>$i$ and $j$ <em>communicates</em> if they reach each other.</li>
-</ul>
-<p><strong>Remark.</strong> Geometrically, an irreducible DTMC is a connected graph.</p>
-<p><strong>Remark.</strong> $i$ reaches $j$ $\not\Rightarrow$ $j$ reaches $i$.</p>
-<p><strong>Lemma.</strong> </p>
-<ul>
-<li>State $i$ reaches $j$ if there exists an integer $n\ge 1$ if $(P^n)_{ij}&gt;0$. </li>
-<li>States $i\to j$ and $j\to k$ imply that $i\to k$. </li>
-</ul>
-<p><strong>Theorem.</strong> An irreducible DTMC has at most one stationary distribution.</p>
-<p><em>Proof.</em> We only prove the case $|S|&lt;\infty$. Suppose $\pi$ and $\pi’$ are stationary distributions. Define<br>$$<br>m=\max_i\frac{\pi(i)}{\pi’(i)}=\frac{\pi(i^*)}{\pi’(i^*)},.<br>$$<br>(Note that for all $i$, $\pi_i&gt;0$ and $\pi’<em>i&gt;0$. To see this, suppose for contradiction that $\pi_1=\cdots=\pi_k=0$ and $\pi</em>{k+1},…,\pi_n&gt;0$. Then $\pi=\pi P$ implies $P_{\alpha,\alpha}=O$, where $\alpha={k+1,k+2,…,n}$. Then for all $k_1\ge k+1$ and for all $k_2\le k$, state $k_1$ is not able to reach state $k_2$, contradicting the irreducibility assumption.)</p>
-<p>By definition,<br>$$<br>\begin{align}<br>\pi(i^*)<br>&amp;=<br>\sum_j\pi(j)P_{ji^*} \<br>&amp;=<br>\sum_j\frac{\pi(j)}{\pi’(j)}\pi’(j)P_{ji^*} \<br>&amp;\le<br> m\sum_j\pi’(j)P_{ji^*} \<br>&amp;=<br>m\pi’(i^*) \<br>&amp;=<br>\pi(i^*),.<br>\end{align}<br>$$<br>Thus “$\le$” must be “$=$”. Hence<br>$$<br>\sum_j\left(\frac{\pi(j)}{\pi’(j)}-m\right)\pi’(j)P_{ji^*}=0 ,.<br>$$<br>Since all terms are nonnegative, then for all $j$,<br>$$<br>\left(\frac{\pi(j)}{\pi’(j)}-m\right)\pi’(j)P_{ji^*}=0,.<br>$$<br>If $P_{ji^*}&gt;0$, then $\frac{\pi(j)}{\pi’(j)}=m$. Noting that for all $k\in\mathbb{N}$, $\pi=\pi P^k$ and $\pi’=\pi’ P^k$, we have<br>$$<br>\left(\frac{\pi(j)}{\pi’(j)}-m\right)\pi’(j)(P^k)<em>{ji^*}=0,.<br>$$<br>By irreducibility, for all $j$, there exists $k$ such that $(P^k)</em>{ij}&gt;0$, which implies $\frac{\pi(j)}{\pi’(j)}=m$. Since $\sum_j\pi(j)=\sum_j\pi’(j)=1$, then $m=1$, hence $\pi=\pi’$. </p>
-<h3 id="Recurrence-and-Transience"><a href="#Recurrence-and-Transience" class="headerlink" title="Recurrence and Transience"></a>Recurrence and Transience</h3><p><strong>Definitions.</strong> Let<br>$$<br>T_i=\min{n\ge 1\mid X_n=i},,<br>$$<br>i.e. $T_i$ is the first time to reach state $i$.</p>
-<p>State $i$ of a DTMC is <em>recurrent</em> if<br>$$<br>P(T_i&lt;\infty\mid X_0=i)=1,.<br>$$<br>Otherwise state $i$ is <em>transient</em>, that is, if $P(T_i&lt;\infty\mid X_0=i)&lt;1$ (instead of $P(T_i=\infty\mid X_0=i)=1$).</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/01/STA4001-LN8/" data-id="ckfqijejd0000sstxgr9sgtvs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stochastic-Process/" rel="tag">Stochastic Process</a></li></ul>
+{% block content %}
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">STA4001 LN4 Discrete Time Markov Chains</div>
-    </a>
-  
-</nav>
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
 
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stochastic-Process/" rel="tag">Stochastic Process</a></li></ul>
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Stochastic-Process/" style="font-size: 10px;">Stochastic Process</a>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/01/STA4001-LN8/">STA4001 LN8</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/">STA4001 LN4 Discrete Time Markov Chains</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/01/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Paul Huang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}

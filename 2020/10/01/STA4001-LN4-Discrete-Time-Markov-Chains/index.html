@@ -1,256 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-  <title>STA4001 LN4 Discrete Time Markov Chains | Paul&#39;s Little Cabin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="STA4001 LN4: Discrete Time Markov ChainsDiscrete Time Markov ChainsDefinition. Notations  $\mathcal{T}&#x3D;{0,1,2,…}$: the set of discrete time $S$: a discrete set of states  A discrete time Markov chain">
-<meta property="og:type" content="article">
-<meta property="og:title" content="STA4001 LN4 Discrete Time Markov Chains">
-<meta property="og:url" content="http://example.com/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/index.html">
-<meta property="og:site_name" content="Paul&#39;s Little Cabin">
-<meta property="og:description" content="STA4001 LN4: Discrete Time Markov ChainsDiscrete Time Markov ChainsDefinition. Notations  $\mathcal{T}&#x3D;{0,1,2,…}$: the set of discrete time $S$: a discrete set of states  A discrete time Markov chain">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-01T07:09:38.000Z">
-<meta property="article:modified_time" content="2020-10-01T07:48:38.038Z">
-<meta property="article:author" content="Paul Huang">
-<meta property="article:tag" content="Stochastic Process">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Paul&#39;s Little Cabin" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head>
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Paul&#39;s Little Cabin</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-STA4001-LN4-Discrete-Time-Markov-Chains" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/" class="article-date">
-  <time datetime="2020-10-01T07:09:38.000Z" itemprop="datePublished">2020-10-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      STA4001 LN4 Discrete Time Markov Chains
-    </h1>
-  
+{% block page_class %}page-post-detail{% endblock %}
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="STA4001-LN4-Discrete-Time-Markov-Chains"><a href="#STA4001-LN4-Discrete-Time-Markov-Chains" class="headerlink" title="STA4001 LN4: Discrete Time Markov Chains"></a>STA4001 LN4: Discrete Time Markov Chains</h1><h3 id="Discrete-Time-Markov-Chains"><a href="#Discrete-Time-Markov-Chains" class="headerlink" title="Discrete Time Markov Chains"></a>Discrete Time Markov Chains</h3><p><strong>Definition.</strong> Notations</p>
-<ul>
-<li>$\mathcal{T}={0,1,2,…}$: the set of discrete time</li>
-<li>$S$: a discrete set of states</li>
-</ul>
-<p>A <em>discrete time Markov chain</em> is a sequence ${X_n:n=0,1,2,…}$ of RVs taking values in $S$, with $X_n$ being the state at time $n\in\mathcal{T}$, and</p>
-<ul>
-<li><p><em>Time homogeneous transition probability</em><br>$$<br>P_{ij}=\mathbb{P}{X_{n+1}=j\mid X_n=i},\quad\forall,i,j\in S,\quad\forall,n\in\mathcal{T}<br>$$</p>
-</li>
-<li><p><em>Markov Property</em>: $\forall,n\ge 1$, $\forall,i_0,i_1,…,i_{n-1},i,j\in S$,<br>$$<br>\mathbb{P}{X_{n+1}=j\mid X_0=i_0,,X_1=i_1,,…,X_{n-1}=i_{n-1},,X_n=i}=P_{ij}=\mathbb{P}{X_{n+1}=j\mid X_n=i},.<br>$$</p>
-</li>
-</ul>
-<p><strong>Interpretation of the Markov Property.</strong> In plain words, the Markov Property says that given the current state, the past information is irrelevant to determining the future information.</p>
-<ul>
-<li>Past states: $X_0=i_0, X_1=i_1,…,X_{n-1}=i_{n-1}$</li>
-<li>Current sate: $X_n=i$</li>
-<li>Future state: $X_{n+1}=j$</li>
-</ul>
-<h3 id="Construction-of-DTMCs"><a href="#Construction-of-DTMCs" class="headerlink" title="Construction of DTMCs"></a>Construction of DTMCs</h3><p><strong>Theorem.</strong> Suppose ${X_n}$ is a sequence of RVs satisfying $X_{n+1}=f(X_n,U_{n+1})$, where </p>
-<ul>
-<li>$f:S\times\mathcal{U}\to S$</li>
-<li>${U_n}$ is a sequence of iid RVs.</li>
-</ul>
-<p>Then ${X_n}$ is a DTMC with state space $S$.</p>
-<p><em>Proof.</em> We need to show that ${X_n}$ has time homogeneous transition probability and satisfies the Markov Property.</p>
-<p>$\forall,n\in\mathcal{T}$ and $\forall,i,j\in S$,<br>$$<br>\begin{align}<br>&amp;\qquad \mathbb{P}(X_{n+1}=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i) \<br>&amp;=<br>\mathbb{P}(f(X_n,U_{n+1})=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i),.<br>\end{align}<br>$$</p>
-<p>Now<br>$$<br>f(X_n,U_{n+1})=f(f(X_{n-1},U_n),U_{n+1})=\cdots=f(f(\cdots f(f(X_0,U_1),U_2)\cdots,U_{n}), U_{n+1})<br>$$<br>depends on $X_0,U_1,U_2,…,U_{n+1}$. Therefore<br>$$<br>\begin{align}<br>&amp;\qquad\mathbb{P}(f(X_n,U_{n+1})=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i) \<br>&amp;=<br>\mathbb{P}(f(X_n,U_{n+1})=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i) \<br>\end{align}<br>$$</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/" data-id="ckfqifxex0000lktx1onu3u1n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stochastic-Process/" rel="tag">Stochastic Process</a></li></ul>
+{% block content %}
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/10/01/STA4001-LN8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          STA4001 LN8
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/10/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
 
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stochastic-Process/" rel="tag">Stochastic Process</a></li></ul>
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Stochastic-Process/" style="font-size: 10px;">Stochastic Process</a>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/01/STA4001-LN8/">STA4001 LN8</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/">STA4001 LN4 Discrete Time Markov Chains</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/01/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Paul Huang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}

@@ -5,15 +5,17 @@
   
 
   
-  <title>Paul&#39;s Little Cabin</title>
+  <title>STA4001 LN8 | Paul&#39;s Little Cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The place I store stuff">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Paul&#39;s Little Cabin">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="STA4001 LN8: Stationary Distribution, Recurrence PropertyWe have reached the core of MC theory: stationary distribution and recurrence property. Gambler’s Ruin ProblemConsider a DTMC with state space">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STA4001 LN8">
+<meta property="og:url" content="http://example.com/2020/10/01/STA4001-LN8/index.html">
 <meta property="og:site_name" content="Paul&#39;s Little Cabin">
-<meta property="og:description" content="The place I store stuff">
+<meta property="og:description" content="STA4001 LN8: Stationary Distribution, Recurrence PropertyWe have reached the core of MC theory: stationary distribution and recurrence property. Gambler’s Ruin ProblemConsider a DTMC with state space">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-01T07:43:37.000Z">
+<meta property="article:modified_time" content="2020-10-01T07:44:26.561Z">
 <meta property="article:author" content="Paul Huang">
 <meta name="twitter:card" content="summary">
   
@@ -64,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-STA4001-LN8" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-STA4001-LN8" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/01/STA4001-LN8/" class="article-date">
   <time datetime="2020-10-01T07:43:37.000Z" itemprop="datePublished">2020-10-01</time>
@@ -79,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/01/STA4001-LN8/">STA4001 LN8</a>
+    <h1 class="article-title" itemprop="name">
+      STA4001 LN8
     </h1>
   
 
@@ -147,123 +147,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-STA4001-LN4-Discrete-Time-Markov-Chains" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/" class="article-date">
-  <time datetime="2020-10-01T07:09:38.000Z" itemprop="datePublished">2020-10-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/">STA4001 LN4 Discrete Time Markov Chains</a>
-    </h1>
+    <a href="/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">STA4001 LN4 Discrete Time Markov Chains</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="STA4001-LN4-Discrete-Time-Markov-Chains"><a href="#STA4001-LN4-Discrete-Time-Markov-Chains" class="headerlink" title="STA4001 LN4: Discrete Time Markov Chains"></a>STA4001 LN4: Discrete Time Markov Chains</h1><h3 id="Discrete-Time-Markov-Chains"><a href="#Discrete-Time-Markov-Chains" class="headerlink" title="Discrete Time Markov Chains"></a>Discrete Time Markov Chains</h3><p><strong>Definition.</strong> Notations</p>
-<ul>
-<li>$\mathcal{T}={0,1,2,…}$: the set of discrete time</li>
-<li>$S$: a discrete set of states</li>
-</ul>
-<p>A <em>discrete time Markov chain</em> is a sequence ${X_n:n=0,1,2,…}$ of RVs taking values in $S$, with $X_n$ being the state at time $n\in\mathcal{T}$, and</p>
-<ul>
-<li><p><em>Time homogeneous transition probability</em><br>$$<br>P_{ij}=\mathbb{P}{X_{n+1}=j\mid X_n=i},\quad\forall,i,j\in S,\quad\forall,n\in\mathcal{T}<br>$$</p>
-</li>
-<li><p><em>Markov Property</em>: $\forall,n\ge 1$, $\forall,i_0,i_1,…,i_{n-1},i,j\in S$,<br>$$<br>\mathbb{P}{X_{n+1}=j\mid X_0=i_0,,X_1=i_1,,…,X_{n-1}=i_{n-1},,X_n=i}=P_{ij}=\mathbb{P}{X_{n+1}=j\mid X_n=i},.<br>$$</p>
-</li>
-</ul>
-<p><strong>Interpretation of the Markov Property.</strong> In plain words, the Markov Property says that given the current state, the past information is irrelevant to determining the future information.</p>
-<ul>
-<li>Past states: $X_0=i_0, X_1=i_1,…,X_{n-1}=i_{n-1}$</li>
-<li>Current sate: $X_n=i$</li>
-<li>Future state: $X_{n+1}=j$</li>
-</ul>
-<h3 id="Construction-of-DTMCs"><a href="#Construction-of-DTMCs" class="headerlink" title="Construction of DTMCs"></a>Construction of DTMCs</h3><p><strong>Theorem.</strong> Suppose ${X_n}$ is a sequence of RVs satisfying $X_{n+1}=f(X_n,U_{n+1})$, where </p>
-<ul>
-<li>$f:S\times\mathcal{U}\to S$</li>
-<li>${U_n}$ is a sequence of iid RVs.</li>
-</ul>
-<p>Then ${X_n}$ is a DTMC with state space $S$.</p>
-<p><em>Proof.</em> We need to show that ${X_n}$ has time homogeneous transition probability and satisfies the Markov Property.</p>
-<p>$\forall,n\in\mathcal{T}$ and $\forall,i,j\in S$,<br>$$<br>\begin{align}<br>&amp;\qquad \mathbb{P}(X_{n+1}=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i) \<br>&amp;=<br>\mathbb{P}(f(X_n,U_{n+1})=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i),.<br>\end{align}<br>$$</p>
-<p>Now<br>$$<br>f(X_n,U_{n+1})=f(f(X_{n-1},U_n),U_{n+1})=\cdots=f(f(\cdots f(f(X_0,U_1),U_2)\cdots,U_{n}), U_{n+1})<br>$$<br>depends on $X_0,U_1,U_2,…,U_{n+1}$. Therefore<br>$$<br>\begin{align}<br>&amp;\qquad\mathbb{P}(f(X_n,U_{n+1})=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i) \<br>&amp;=<br>\mathbb{P}(f(X_n,U_{n+1})=j\mid X_0=i_0,,X_1=i_1,,…,,X_{n-1}=i_{n-1},,X_n=i) \<br>\end{align}<br>$$</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/01/STA4001-LN4-Discrete-Time-Markov-Chains/" data-id="ckfqifxex0000lktx1onu3u1n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/01/hello-world/" class="article-date">
-  <time datetime="2020-10-01T06:49:42.744Z" itemprop="datePublished">2020-10-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/01/hello-world/" data-id="ckfqifxf90001lktxf69ld2r9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         

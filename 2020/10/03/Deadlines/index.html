@@ -154,112 +154,16 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >STA4001 LN6 Value Function</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Deadlines</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="STA4001-LN6-Value-Function"><a href="#STA4001-LN6-Value-Function" class="headerlink" title="STA4001 LN6: Value Function"></a>STA4001 LN6: Value Function</h1><h3 id="The-Value-Function"><a href="#The-Value-Function" class="headerlink" title="The Value Function"></a>The Value Function</h3><h4 id="Expected-Profit"><a href="#Expected-Profit" class="headerlink" title="Expected Profit"></a>Expected Profit</h4><p>Back to the Newsvendor model. Let $g(X_n)$ be the profit on day $n$. Then</p>
-<script type="math/tex; mode=display">
-\mathbb{E}[g(X_3)\mid X_0=1]=\sum_{j=1}^3g(j)\mathbb{P}(X_3=j\mid X_0=1)=\sum_{j=1}^3g(j)(P^3)_{1,j}=(P^3g)_1\,.</script><p>Hence</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-\mathbb{E}[g(X_3)\mid X_0=1] \\[4pt] \mathbb{E}[g(X_3)\mid X_0=2] \\[4pt] \mathbb{E}[g(X_3)\mid X_0=3]
-\end{pmatrix}
-=
-P^3
-\begin{pmatrix}
-g(1) \\[4pt] g(2) \\[4pt] g(3)
-\end{pmatrix}\,.</script><h4 id="Expected-Total-Profit"><a href="#Expected-Total-Profit" class="headerlink" title="Expected Total Profit"></a>Expected Total Profit</h4><p><strong>Definition.</strong> The <em>value function</em> is defined as $v^n(i)=\mathbb{E}[g(X_1)+\cdots+g(X_n)\mid X_0=i]$. </p>
-<p><strong>Interpretation.</strong> The value function is the total profit in $n$ days.</p>
-<p>The value function can be calculated in the following way:</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
-v^n(1) \\ v^n(2) \\ v^n(3)
-\end{pmatrix}
-=
-(P+P^2+\cdots+P^n)
-\begin{pmatrix}
-g(1) \\ g(2) \\ g(3)
-\end{pmatrix}\,.</script><p>We may also calculate the <em>total discounted profit</em> $\mathbb{E}[\beta g(X_1)+\beta^2g(X_2)+\beta^3 g(X_3)\mid X_0=i]$. The intuition is that $100$ yuan on day $1$ may only be worth $95$ yuan on day $0$ if $\beta=0.95$. </p>
-<h3 id="Computing-the-Value-Function-Efficiently"><a href="#Computing-the-Value-Function-Efficiently" class="headerlink" title="Computing the Value Function Efficiently"></a>Computing the Value Function Efficiently</h3><h4 id="A-Naive-Algorithm"><a href="#A-Naive-Algorithm" class="headerlink" title="A Naive Algorithm"></a>A Naive Algorithm</h4><p>We know that the value function is given by $(P+P^2+P^3)g$. We may compute its value in the following way.</p>
-<p><strong>Algorithm (Naive).</strong> </p>
-<ol>
-<li>Compute $P^2$</li>
-<li>Compute $P^3=P\cdot P^2$</li>
-<li>Sum $P+P^2+P^3$</li>
-<li>Compute $(P+P^2+P^3)g$</li>
-</ol>
-<p>Suppose the number of states is $m=|S|$. The complexity of this algorithm is $O(2m^3)+O(m^2)=O(m^3)$. </p>
-<h4 id="Bellman-Equation"><a href="#Bellman-Equation" class="headerlink" title="Bellman Equation"></a>Bellman Equation</h4><p>We now introduce a more efficient algorithm which has complexity $O(m^2)$.</p>
-<p>Define the <em>cost-to-go</em> function $v^k(j)=\mathbb{E}[g(X_k)+\cdots+g(X_3)\mid X_k=j]$, $k=0,1,2,3$. Then $v_0=v$. </p>
-<p><strong>Algorithm.</strong></p>
-<ol>
-<li>Let $v^3=g$.</li>
-<li>Compute $v^2=g+Pv^3$.</li>
-<li>Compute $v^1=g+Pv^2$. </li>
-<li>Compute $v^0=g+Pv^1$.</li>
-</ol>
-<p>This algorithm involves only matrix-vector multiplication and vector addition, which both have complexity $O(m^2)$. Thus the complexity of this algorithm is $O(m^2)$. </p>
-<p>The rational behind this algorithm is the <em>Bellman Equation</em>. </p>
-<p><strong>Theorem. (Bellman Equation)</strong> $v^k=g+Pv^{k+1}$.</p>
-<p><em>Proof.</em> </p>
-<script type="math/tex; mode=display">
-\begin{align}
-v^k(i)
-&=
-\mathbb{E}[g(X_k)+g(X_{k+1})+\cdots+g(X_n)\mid X_k=i] \\
-&=
-\mathbb{E}[g(X_k)\mid X_k=i] + \mathbb{E}[g(X_{k+1})+\cdots+g(X_n)\mid X_k=i] \\
-&=
-g(i)+\sum_j\mathbb{E}[g(X_{k+1})+\cdots+g(X_n)\mid X_k=i,\,X_{k+1}=j]\mathbb{P}(X_{k+1}=j\mid X_k=i) \\
-&=
-g(i)+\sum_j\mathbb{E}[g(X_{k+1})+\cdots+g(X_n)\mid X_{k+1}=j]\mathbb{P}(X_{k+1}=j\mid X_k=i)\tag{Markov} \\
-&=
-g(i)+\sum_jv^{k+1}(j)P_{i,j} \\
-&=
-g(i)+(Pv^{k+1})_i\,.
-\end{align}</script><p>Hence $v^k=g+Pv^{k+1}$. <strong>Q.E.D.</strong></p>
-<p><strong>Remark.</strong> Here we have used the fact $\mathbb{E}[X]=\mathbb{E}_Y[\mathbb{E}_X[X\mid Y]]=\sum_y\mathbb{E}[X\mid Y=y]\mathbb{P}(Y=y)$. The proof is simple:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\mathbb{E}[X]
-&=
-\sum_{x}x\mathbb{P}(X=x) \\[4pt]
-&=
-\sum_xx\sum_y\mathbb{P}(X=x\mid Y=y)\mathbb{P}(Y=y) \\[4pt]
-&=
-\sum_y\sum_xx\mathbb{P}(X=x\mid Y=y)\mathbb{P}(Y=y) \\[4pt]
-&=
-\sum_y\mathbb{E}[X\mid Y=y]\mathbb{P}(Y=y)\,.
-\end{align}</script><p>More generally, we have $\mathbb{E}[X\mid Z=z]=\sum_y\mathbb{E}[X\mid Y=y,Z=z]\mathbb{P}(Y=y\mid Z=z)$.</p>
-<h4 id="Bellman-Equation-Infinite-Horizon"><a href="#Bellman-Equation-Infinite-Horizon" class="headerlink" title="Bellman Equation: Infinite Horizon"></a>Bellman Equation: Infinite Horizon</h4><p>If we are considering the expected total discounted profit over an infinite horizon</p>
-<script type="math/tex; mode=display">
-v(i)=\mathbb{E}[g(X_0)+\gamma g(X_1)+\gamma^2g(X_2)+\cdots\mid X_0=i]=\mathbb{E}\left[\sum_{n=0}^{\infty}\gamma^ng(X_n)\mid X_0=i\right]</script><p>(note that a discount factor $\gamma\in(0,1)$ is necessary, for otherwise the sum would diverge), we have the following version of Bellman Equation.</p>
-<p><strong>Theorem. (Bellman Equation: Infinite Horizon)</strong> Assume that $g$ is bounded. Then</p>
-<ul>
-<li>The value function satisfies $v=g+\gamma Pv$.</li>
-<li>The solution $v$ exists and is unique.</li>
+                <ul>
+<li>MAT4033 Differential Geometry HW1 <strong>Oct. 8</strong></li>
+<li>MAT3004 Abstract Algebra A2 <strong>Oct. 10</strong></li>
+<li>MAT4220 PDE A2 <strong>Oct. 12</strong></li>
+<li>STA4001 Stochastic Processes HW4 <strong>Oct. 12</strong></li>
 </ul>
-<p>This theorem holds even when $|S|=\infty$.</p>
-<p><em>Proof of (a).</em> </p>
-<script type="math/tex; mode=display">
-\begin{align}
-v(i)
-&=
-\mathbb{E}\left[\sum_{n=0}^{\infty}\gamma^ng(X_n)\mid X_0=i\right] \\[4pt]
-&=
-g(i)+\mathbb{E}\left[\sum_{n=1}^{\infty}\gamma^ng(X_n)\mid X_0=i\right] \\[4pt]
-&=
-g(i)+\sum_{j}\left\{\mathbb{E}\left[\sum_{n=1}^{\infty}\gamma^ng(X_n)\mid X_0=i,X_1=j\right]\mathbb{P}[X_1=j\mid X_0=i]\right\} \\[4pt]
-&=
-g(i)+\sum_{j}\left\{\mathbb{E}\left[\sum_{n=1}^{\infty}\gamma^ng(X_n)\mid X_1=j\right]\mathbb{P}[X_1=j\mid X_0=i]\right\} \tag{Markov} \\[4pt]
-&=
-g(i)+\sum_{j}\gamma\left\{\mathbb{E}\left[\sum_{n=1}^{\infty}\gamma^{n-1}g(X_n)\mid X_1=j\right]P_{i,j}\right\} \tag{Markov} \\[4pt]
-&=
-g(i)+\gamma\sum_j v(j)P_{i,j} \\
-&=
-(g+\gamma Pv)_i\,.
-\end{align}</script><p>We conclude that $v=g+\gamma Pv$. <strong>Q.E.D.</strong></p>
 
             </div>
 
@@ -322,8 +226,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2020/10/02/STA4001-LN6-Value-Function/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2020/10/02/STA4001-LN6-Value-Function/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2020/10/03/Deadlines/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2020/10/03/Deadlines/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
